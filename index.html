@@ -48,7 +48,57 @@
   </section>
 
   <section id="map" class="map">
-    <h2>Interactive Migration Map (Coming Soon)</h2>
+    <h2>Interactive Migration Map </h2>
+<!-- Migration Map -->
+<section id="migration-map">
+  <h2>Migration Map</h2>
+  <p>This interactive map visualizes major migration routes of Carpatho-Rusyn communities from Central Europe to North America.</p>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Map container -->
+  <div id="map" style="height: 500px; border: 1px solid #ccc;"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialize map
+    var map = L.map('map').setView([48.5, 22.0], 4); // centered near Carpathians
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Locations
+    const locations = {
+      "Uzhhorod": [48.62, 22.30],
+      "Mukachevo": [48.44, 22.72],
+      "Presov": [49.00, 21.24],
+      "Pittsburgh": [40.44, -79.99],
+      "Toronto": [43.65, -79.38]
+    };
+
+    // Add markers and popups
+    for (const [name, coords] of Object.entries(locations)) {
+      L.marker(coords).addTo(map).bindPopup(`<b>${name}</b>`);
+    }
+
+    // Draw migration paths (e.g. Mukachevo → Pittsburgh → Toronto)
+    const paths = [
+      [locations["Mukachevo"], locations["Pittsburgh"]],
+      [locations["Pittsburgh"], locations["Toronto"]],
+      [locations["Uzhhorod"], locations["Presov"]],
+      [locations["Presov"], locations["Toronto"]]
+    ];
+
+    paths.forEach(path => {
+      L.polyline(path, {color: 'blue', weight: 3, opacity: 0.7}).addTo(map);
+    });
+  </script>
+</section>
+
     <p>Trace the movement of Rusyn and Ruthenian communities from the Carpathian region to Canada and the United States. This interactive feature will show key settlement hubs and oral histories linked to each point.</p>
   </section>
 
