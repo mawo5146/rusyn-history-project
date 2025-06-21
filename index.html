@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who Are the Rusyns? - Digital History Project</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+    header { background-color: #3f51b5; color: white; padding: 1em; text-align: center; }
+    nav { background: #e8eaf6; padding: 1em; text-align: center; }
+    nav a { margin: 0 1em; text-decoration: none; color: #3f51b5; font-weight: bold; }
+    section { padding: 2em; max-width: 900px; margin: auto; background: white; }
+    h1, h2 { color: #3f51b5; }
+    .map, .timeline, .glossary, .archive { margin-top: 2em; }
+    footer { background-color: #3f51b5; color: white; text-align: center; padding: 1em; margin-top: 2em; }
+    .quote { font-style: italic; color: #555; margin: 1em 0; }
+  </style>
+</head>
+<body>
+<header>
+<h1>Blueprint for Change: Ruthenian and Rusyn Identity</h1>
+<p>Exploring cultural distinctiveness through digital public history</p>
+</header>
+<nav>
+<a href="#about">About</a>
+<a href="#timeline">Timeline</a>
+<a href="#map">Migration Map</a>
+<a href="#archive">Archive</a>
+<a href="#glossary">Glossary</a>
+</nav>
+<section id="about">
+<h2>About the Project</h2>
+<p>This site highlights the unique cultural and historical identities of Ruthenians and Rusyns, communities often miscategorized as Ukrainian. Drawing on community engagement, academic sources, and digital storytelling, this project aims to educate and empower by clarifying identity distinctions and celebrating heritage.</p>
+</section>
+<section class="timeline" id="timeline">
+<h2>Historical Timeline</h2>
+<ul>
+<li><strong>Pre-1918:</strong> Ruthenians recognized in Austro-Hungarian Empire.</li>
+<li><strong>1918–1945:</strong> Identities split and contested in Polish, Czechoslovak, and Soviet territories.</li>
+<li><strong>Post-1945:</strong> Suppression under USSR; Russification and Ukrainization policies intensify.</li>
+<li><strong>Post-1991:</strong> Rusyn recognition in Slovakia and efforts toward cultural revival in the diaspora.</li>
+</ul>
+</section>
+<section class="map" id="map">
+<h2>Interactive Migration Map </h2>
+<!-- Migration Map -->
+<section id="migration-map">
+<h2>Migration Map</h2>
+<p>This interactive map visualizes major migration routes of Carpatho-Rusyn communities from Central Europe to North America.</p>
+<!-- Leaflet CSS -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+<!-- Map container -->
+<div id="map" style="height: 500px; border: 1px solid #ccc;"></div>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Initialize map
+    var map = L.map('map').setView([48.5, 22.0], 4); // centered near Carpathians
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Locations
+    const locations = {
+      "Uzhhorod": [48.62, 22.30],
+      "Mukachevo": [48.44, 22.72],
+      "Presov": [49.00, 21.24],
+      "Pittsburgh": [40.44, -79.99],
+      "Toronto": [43.65, -79.38]
+    };
+
+    // Add markers and popups
+    for (const [name, coords] of Object.entries(locations)) {
+      L.marker(coords).addTo(map).bindPopup(`<b>${name}</b>`);
+    }
+
+    // Draw migration paths (e.g. Mukachevo → Pittsburgh → Toronto)
+    const paths = [
+      [locations["Mukachevo"], locations["Pittsburgh"]],
+      [locations["Pittsburgh"], locations["Toronto"]],
+      [locations["Uzhhorod"], locations["Presov"]],
+      [locations["Presov"], locations["Toronto"]]
+    ];
+
+    paths.forEach(path => {
+      L.polyline(path, {color: 'blue', weight: 3, opacity: 0.7}).addTo(map);
+    });
+  </script>
+</section>
+<p>Trace the movement of Rusyn and Ruthenian communities from the Carpathian region to Canada and the United States. This interactive feature will show key settlement hubs and oral histories linked to each point.</p>
+</section>
+<section class="archive" id="archive">
+<h2>Archival Highlights</h2>
+<ul>
+<li>Digitized publications from the <strong>Carpatho-Ruthenica Collection</strong> (Thomas Fisher Rare Book Library).</li>
+<li>Oral histories from descendants in Toronto and Pennsylvania (forthcoming).</li>
+<li>Selections from the Carpatho-Rusyn Research Center and Society for Rusyn Evolution.</li>
+</ul>
+<h3>Photo Exhibit</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 12px;">
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Map - Carpathian Rus', 19th Century" src="images/Screenshot_2025-06-20_at_4.22.49 PM.jpeg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Hoverla Mountains" src="images/Sunrise-on-the-highest-mountain-in-Ukraine-–-Hoverla-Ukraine.-Andrew-Mayovskyy.-Shutterstock.jpg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Map - Carpathian Rus', 1919–1939" src="images/Screenshot_2025-06-20_at_4.23.08 PM.jpeg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Map - Dialects of Carpathian Rus'" src="images/Screenshot_2025-06-20_at_4.23.58 PM.jpeg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Mock Wedding, Slovakia" src="images/06-Bethany-Sromoski-in-a-mock-wedding-in-Tichy-Potok-Slovakia-scaled.jpg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="19th Century Rusyns" src="images/lit_3917_s385.jpg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Traditional Rusyn Home" src="images/12-Traditional-Rusyn-home-at-Lubovniansky-skanzen-in-Stara-Lubovna-Slovakia.jpg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+<div style="flex: 1 0 30%; max-width: 30%;">
+<img alt="Rusyn Wooden Church" src="images/kostel_rusinska_vesnice.jpg" style="width: 100%; height: auto; border: 1px solid #ccc;"/>
+</div>
+</div>
+</section>
+<section class="glossary" id="glossary">
+<h2>Language &amp; Identity Glossary</h2>
+<table border="1" cellpadding="5" style="border-collapse: collapse;">
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td>Rusyn</td><td>Self-identified East Slavic group with distinct language and culture.</td></tr>
+<tr><td>Ruthenian</td><td>Historical term used in Austro-Hungarian and Polish sources for Rusyn people.</td></tr>
+<tr><td>Ukrainian</td><td>National identity that many Rusyns were reclassified under post-WWII.</td></tr>
+</table>
+</section>
+<footer>
+<p>Created as part of a digital public history project at the University of Toronto – June 2025</p>
+</footer>
+</body>
+</html>
